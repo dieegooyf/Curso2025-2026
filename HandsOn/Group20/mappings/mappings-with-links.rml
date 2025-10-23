@@ -13,8 +13,8 @@
 @prefix v: <http://rdf.data-vocabulary.org/#> .
 @prefix schema: <http://schema.org/> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix ns: <http://www.owl-ontologies.com/ns#> .
-@prefix ex: <http://group20.linkeddata.es/parkings/resource/> .
+@prefix ns: <https://data.smartcitymadrid.es/ontology/parking#> .
+@prefix ex: <https://data.smartcitymadrid.es/id/parking/> .
 
 map:map_LocationTM_000 rml:logicalSource map:source_001 ;
 	rdf:type rr:TriplesMap ;
@@ -87,7 +87,7 @@ map:om_013 rml:reference "URLIcono" ;
 	rr:termType rr:IRI .
 
 map:om_014 rdf:type rr:ObjectMap ;
-	rr:template "http://group20.linkeddata.es/parkings/resource/Location/{id}" ;
+	rr:template "https://data.smartcitymadrid.es/id/parking/{id}/location" ;
 	rr:termType rr:IRI .
 
 map:om_015 rdf:type rr:ObjectMap ;
@@ -301,10 +301,10 @@ map:rules_000 <http://rdfs.org/ns/void#exampleResource> map:map_LocationTM_000, 
 	rdf:type <http://rdfs.org/ns/void#Dataset> .
 
 map:s_000 rdf:type rr:SubjectMap ;
-	rr:template "http://group20.linkeddata.es/parkings/resource/Parking/{id}" .
+	rr:template "https://data.smartcitymadrid.es/id/parking/{id}" .
 
 map:s_001 rdf:type rr:SubjectMap ;
-	rr:template "http://group20.linkeddata.es/parkings/resource/Location/{id}" .
+	rr:template "https://data.smartcitymadrid.es/id/parking/{id}/location" .
 
 map:source_000 rml:referenceFormulation ql:CSV ;
 	rml:source "parkings-updated-with-links.csv" ;
@@ -313,4 +313,3 @@ map:source_000 rml:referenceFormulation ql:CSV ;
 map:source_001 rml:referenceFormulation ql:CSV ;
 	rml:source "parkings-updated-with-links.csv" ;
 	rdf:type rml:LogicalSource .
-
