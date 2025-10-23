@@ -7,7 +7,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 ################################################################################
 # QUERY 9 - First ten parkings linked to Wikidata
-## Retrieves the first ten parkings that have been linked to Wikidata entities via owl:sameAs. Results are ordered by the parking identifier.
+## Retrieves the first ten parkings that have been linked to Wikidata entities via owl:sameAs
+## Results are ordered by the parking identifier
 ################################################################################
 SELECT ?id ?name ?wikidata
 WHERE {
@@ -22,7 +23,8 @@ LIMIT 10
 
 ################################################################################
 # QUERY 10 - Linked geographic context (town, region, country)
-## Retrieves the first ten parkings with their linked municipalities in Wikidata. Results are ordered by the parking identifier.
+## Retrieves the first ten parkings with their linked municipalities in Wikidata
+## Results are ordered by the parking identifier
 ################################################################################
 SELECT ?id ?name ?town
 WHERE {
