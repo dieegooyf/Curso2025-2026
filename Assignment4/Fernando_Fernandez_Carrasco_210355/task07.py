@@ -161,6 +161,8 @@ report.validate_07_03(g, query)
 
 """**Task 7.4: List the name of those entities who have a colleague with a dog, or that have a collegue who has a colleague who has a dog (in SPARQL). Return the results in a variable called name**"""
 
+# TO DO
+
 query = """
 PREFIX ns:   <http://oeg.fi.upm.es/def/people#>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -169,29 +171,25 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT DISTINCT ?name
 WHERE {
   {
-    # colleague directly owns a pet
+    # caso A: colega directo posee una mascota (Animal)
     ?s ns:hasColleague/ns:ownsPet ?pet .
     ?pet rdf:type ns:Animal .
   }
   UNION
   {
-    # colleague-of-colleague owns a pet
+    # caso B: colega->colega posee una mascota (Animal)
     ?s ns:hasColleague/ns:hasColleague/ns:ownsPet ?pet2 .
     ?pet2 rdf:type ns:Animal .
   }
 
-  OPTIONAL { ?s ns:hasName ?n1 }
-  OPTIONAL { ?s rdfs:label ?n2 }
-  BIND( COALESCE(?n1, ?n2) AS ?name )
+  ?s rdfs:label ?name .
 }
 ORDER BY ?name
 """
 
+# Visualize the results
 for r in g.query(query):
   print(r.name)
-
-# TO DO
-# Visualize the results
 
 ## Validation: Do not remove
 report.validate_07_04(g,query)
