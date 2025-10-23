@@ -9,15 +9,14 @@ prefixes:
   rml: http://semweb.mmlab.be/ns/rml#
   ql:  http://semweb.mmlab.be/ns/ql#
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  ns:  http://www.owl-ontologies.com/ns#
-  owl: http://www.w3.org/2002/07/owl#
-  ex:  http://group20.linkeddata.es/parkings/resource/
+  ns:  https://data.smartcitymadrid.es/ontology/parking#
+  ex:  https://data.smartcitymadrid.es/id/parking/
 
 mappings:
   triplesmap1:
     sources:
-      - [parkings-updated-with-links.csv~csv]   # <-- usa EXACTAMENTE el mismo nombre en ambos
-    s: ex:Parking/$(id)
+      - [parkings-updated-with-links.csv~csv]
+    s: ex:$(id)
     po:
       - [a, ns:Parking]
 
@@ -35,20 +34,19 @@ mappings:
       - [ns:hasCategory, $(category)]
 
       - p: ns:hasCategoryCode
-        o: { value: $(catCode), datatype: xsd:integer }  # <-- indent ok
+        o: { value: $(catCode), datatype: xsd:integer }  
 
       - [ns:hasCountry, $(country)]
       - [owl:sameAs, $(wiki_data_country)~iri]
       - [ns:hasURLIcon, $(URLIcono)~iri]
 
-      # Enlace sin join: IRI determinista a Location
       - p: ns:hasLocation
-        o: ex:Location/$(id)~iri
+        o: ex:$(id)/location~iri
 
   LocationTM:
     sources:
-      - [parkings-updated-with-links.csv~csv]   # <-- usa EXACTAMENTE el mismo nombre en ambos
-    s: ex:Location/$(id)
+      - [parkings-updated-with-links.csv~csv]
+    s: ex:$(id)/location
     po:
       - [a, ns:Location]
 
@@ -62,6 +60,7 @@ mappings:
       - [owl:sameAs, $(wiki_data_state)~iri]
       - [ns:hasTown, $(town)]
       - [owl:sameAs, $(wiki_data_town)~iri]
+
       - p: ns:isEMTParking
         o: { value: $(emtParking), datatype: xsd:boolean }
 
