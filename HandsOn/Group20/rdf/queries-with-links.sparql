@@ -22,7 +22,7 @@ ORDER BY xsd:integer(?id)
 LIMIT 10
 
 ################################################################################
-# QUERY 10 - Linked geographic context (town, region, country)
+# QUERY 10 - First ten parkings with linked municipalities in Wikidata
 ## Retrieves the first ten parkings with their linked municipalities in Wikidata
 ## Results are ordered by the parking identifier
 ################################################################################
