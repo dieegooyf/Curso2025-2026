@@ -15,7 +15,7 @@ url = 'https://raw.githubusercontent.com/FacultadInformatica-LinkedData/Curso202
 urllib.request.urlretrieve(url, 'validation.py')
 github_storage = "https://raw.githubusercontent.com/FacultadInformatica-LinkedData/Curso2025-2026/master/Assignment4/course_materials"
 
-"""Import RDFLib main methods"""
+"""Import RDFLib main methods""" 
 
 from rdflib import Graph, Namespace, Literal, XSD
 from rdflib.namespace import RDF, RDFS
@@ -25,7 +25,7 @@ g.namespace_manager.bind('ns', Namespace("http://somewhere#"), override=False)
 r = Report()
 
 """Create a new class named Researcher"""
-
+ 
 ns = Namespace("http://mydomain.org#")
 g.add((ns.Researcher, RDF.type, RDFS.Class))
 for s, p, o in g:

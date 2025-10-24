@@ -133,7 +133,7 @@ query = """
 PREFIX : <http://oeg.fi.upm.es/def/people#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT DISTINCT ?name
+SELECT DISTINCT ?name  
 WHERE {
   {
     ?person :hasColleague ?col .

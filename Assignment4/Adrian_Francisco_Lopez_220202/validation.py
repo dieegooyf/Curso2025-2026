@@ -79,7 +79,7 @@ class Report:
             self.__add_to_report("ERROR IN TASK 6.1")
         else:
             self.__add_to_report("TASK 6.1 OK")
-
+ 
     def validate_task_06_02(self, g):
         # check properties
         error = False
