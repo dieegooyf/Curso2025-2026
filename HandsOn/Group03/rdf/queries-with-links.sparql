@@ -20,11 +20,35 @@ SELECT (COUNT(?c) AS ?total) WHERE {
           STRSTARTS(STR(?c),"https://www.wikidata.org/entity/") )
 }
 
-# D. Traer etiquetas desde Wikidata (muestra)
-SELECT ?s ?name ?c ?label WHERE {
-  ?s a schema:Place ; schema:name ?name ; schema:containedInPlace ?c .
-  SERVICE <https://query.wikidata.org/sparql> {
-    ?c rdfs:label ?label . FILTER(LANG(?label) IN ("es","en"))
-  }
+# Q4: Listar estaciones con su admin local via owl:sameAs (resultado no vacío)
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+
+SELECT ?station ?name ?adminLocal ?adminLabel WHERE {
+  ?station a schema:Place ;
+           schema:name ?name ;
+           schema:containedInPlace ?adminWD .
+  ?adminLocal owl:sameAs ?adminWD ;
+              rdfs:label ?adminLabel .
+  FILTER(LANG(?adminLabel) = "es")
 }
-LIMIT 30
+LIMIT 50
+
+# Q5: Datos para la app (nombre, coords, admin local) usando owl:sameAs
+PREFIX schema: <http://schema.org/>
+PREFIX wgs:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+
+SELECT ?station ?name ?lat ?long ?adminLabel WHERE {
+  ?station a schema:Place ;
+           schema:name ?name ;
+           wgs:lat ?lat ;
+           wgs:long ?long ;
+           schema:containedInPlace ?adminWD .
+  ?adminLocal owl:sameAs ?adminWD ;
+              rdfs:label ?adminLabel .
+  FILTER(LANG(?adminLabel) = "es")
+}
+LIMIT 50

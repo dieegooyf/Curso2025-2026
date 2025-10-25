@@ -5,6 +5,7 @@
 @prefix schema: <http://schema.org/> .
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
 
 <https://facultadinformatica-linkeddata.github.io/Curso2025-2026/HandsOn/Group03/id/station/mad-air-04>
   a schema:Place;
@@ -293,3 +294,20 @@
   rdfs:label "Tres Olivos"@es;
   wgs:lat 40.5005477;
   wgs:long -3.6897308 .
+
+
+<https://facultadinformatica-linkeddata.github.io/Curso2025-2026/HandsOn/Group03/id/municipio/madrid>
+  a schema:Place ;
+  rdfs:label "Madrid"@es ;
+  owl:sameAs <https://www.wikidata.org/entity/Q2807> .
+
+<https://facultadinformatica-linkeddata.github.io/Curso2025-2026/HandsOn/Group03/id/provincia/madrid>
+  a schema:Place ;
+  rdfs:label "Madrid (provincia)"@es ;
+  owl:sameAs <https://www.wikidata.org/entity/Q24004405> .
+
+<https://facultadinformatica-linkeddata.github.io/Curso2025-2026/HandsOn/Group03/id/ccaa/comunidad-de-madrid>
+  a schema:Place ;
+  rdfs:label "Comunidad de Madrid"@es ;
+  owl:sameAs <https://www.wikidata.org/entity/Q5756> .
+
