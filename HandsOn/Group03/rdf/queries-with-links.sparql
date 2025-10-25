@@ -1,0 +1,30 @@
+PREFIX schema: <http://schema.org/>
+PREFIX wgs:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+
+# A. Número de estaciones modeladas como schema:Place
+SELECT (COUNT(DISTINCT ?s) AS ?n) WHERE { ?s a schema:Place . }
+
+# B. Cada estación debe tener 3 enlaces administrativos (municipio, provincia, CCAA)
+SELECT ?s (COUNT(?c) AS ?nLinks) WHERE {
+  ?s a schema:Place ; schema:containedInPlace ?c .
+}
+GROUP BY ?s
+HAVING (?nLinks < 3)
+
+# C. Comprobar que los enlaces son de Wikidata (formato IRI)
+SELECT (COUNT(?c) AS ?total) WHERE {
+  ?s a schema:Place ; schema:containedInPlace ?c .
+  FILTER( STRSTARTS(STR(?c),"http://www.wikidata.org/entity/") ||
+          STRSTARTS(STR(?c),"https://www.wikidata.org/entity/") )
+}
+
+# D. Traer etiquetas desde Wikidata (muestra)
+SELECT ?s ?name ?c ?label WHERE {
+  ?s a schema:Place ; schema:name ?name ; schema:containedInPlace ?c .
+  SERVICE <https://query.wikidata.org/sparql> {
+    ?c rdfs:label ?label . FILTER(LANG(?label) IN ("es","en"))
+  }
+}
+LIMIT 30
