@@ -105,15 +105,15 @@ map:om_011 rml:reference "Tipo" ;
 
 map:om_012 rdf:type rr:ObjectMap ;
 	rr:template "http://data.barcelona.cat/actividades/Categoria/{Etiquetas}" ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_013 rdf:type rr:ObjectMap ;
 	rr:template "http://data.barcelona.cat/url/Organizador/{Organizadores_normalizado}" ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_014 rdf:type rr:ObjectMap ;
 	rr:template "http://data.barcelona.cat/url/Municipio/{Nombre_municipio_normalizado}" ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_015 rdf:type rr:ObjectMap ;
 	rr:constant base:Categoria ;
@@ -130,7 +130,7 @@ map:om_017 rdf:type rr:ObjectMap ;
 
 map:om_018 rml:reference "URL_Organizadores" ;
 	rdf:type rr:ObjectMap ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_019 rdf:type rr:ObjectMap ;
 	rr:constant url:Municipio ;
@@ -138,11 +138,11 @@ map:om_019 rdf:type rr:ObjectMap ;
 
 map:om_020 rdf:type rr:ObjectMap ;
 	rr:template "http://data.barcelona.cat/url/Comarca/{Comarca_normalizada}" ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_021 rml:reference "URL_Municipio" ;
 	rdf:type rr:ObjectMap ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:om_022 rdf:type rr:ObjectMap ;
 	rr:constant url:Comarca ;
@@ -150,7 +150,7 @@ map:om_022 rdf:type rr:ObjectMap ;
 
 map:om_023 rml:reference "URL_Comarca" ;
 	rdf:type rr:ObjectMap ;
-	rr:termType rr:Literal .
+	rr:termType rr:IRI .
 
 map:pm_000 rdf:type rr:PredicateMap ;
 	rr:constant rdf:type .
