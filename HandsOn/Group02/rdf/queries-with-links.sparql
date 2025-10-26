@@ -89,7 +89,29 @@ WHERE {
 ORDER BY ?municipio
 LIMIT 20
 
-SELECT ?organizador ?uriwd
-WHERE {
 
+# Encuentra actividades y sus organizadores vinculados a Wikidata:Municipio
+SELECT ?actividad ?organizador ?wikidata
+WHERE {
+  ?actividad rel:isHosted ?organizador .
+  ?organizador owl:sameAs ?wikidata .
 }
+
+
+# Encuentra actividades y los municipios vinculados a Wikidata:Municipio
+SELECT ?actividad ?municipio ?wikidata
+WHERE {
+  ?actividad rel:placed ?municipio .
+  ?municipio owl:sameAs ?wikidata .
+}
+LIMIT 20
+
+
+
+# Relaciona municipios con comarcas y sus equivalentes en Wikidata
+SELECT ?municipio ?comarca ?wikidata
+WHERE {
+  ?municipio rel:isContained ?comarca .
+  ?comarca owl:sameAs ?wikidata .
+}
+LIMIT 20
