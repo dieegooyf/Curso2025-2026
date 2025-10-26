@@ -151,13 +151,13 @@ map:pm_000 rdf:type rr:PredicateMap ;
 	rr:constant rdf:type .
 
 map:pm_001 rdf:type rr:PredicateMap ;
-	rr:constant att:Titulo .
+	rr:constant att:titulo .
 
 map:pm_002 rdf:type rr:PredicateMap ;
-	rr:constant att:Descripcion .
+	rr:constant att:descripcion .
 
 map:pm_003 rdf:type rr:PredicateMap ;
-	rr:constant att:FechaInicio .
+	rr:constant att:fechaInicio .
 
 map:pm_004 rdf:type rr:PredicateMap ;
 	rr:constant att:fechaFin .
@@ -166,19 +166,19 @@ map:pm_005 rdf:type rr:PredicateMap ;
 	rr:constant att:duracionH .
 
 map:pm_006 rdf:type rr:PredicateMap ;
-	rr:constant att:NumDias .
+	rr:constant att:numDias .
 
 map:pm_007 rdf:type rr:PredicateMap ;
-	rr:constant att:Precio .
+	rr:constant att:precio .
 
 map:pm_008 rdf:type rr:PredicateMap ;
-	rr:constant att:Aforo .
+	rr:constant att:aforo .
 
 map:pm_009 rdf:type rr:PredicateMap ;
-	rr:constant att:Inscripcion .
+	rr:constant att:inscripcion .
 
 map:pm_010 rdf:type rr:PredicateMap ;
-	rr:constant att:Anuncio .
+	rr:constant att:anuncio .
 
 map:pm_011 rdf:type rr:PredicateMap ;
 	rr:constant rel:typeOf .
