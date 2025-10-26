@@ -8,7 +8,6 @@ SELECT ?actividad ?titulo ?tipo ?precio ?fechaInicio ?fechaFin ?organizador
 WHERE {
   ?actividad a base:Actividad ;
             att:titulo ?titulo ;
-            att:tipo ?tipo ;
             att:precio ?precio ;
             att:fechaInicio ?fechaInicio ;
             att:fechaFin ?fechaFin ;

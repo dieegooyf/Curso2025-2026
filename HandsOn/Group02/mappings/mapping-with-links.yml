@@ -13,6 +13,7 @@ prefixes:
 
 mappings:
   actividad:
+
     sources: 
       - ['rawdataset_actividades_barcelona-updated.csv~csv']
     s: http://data.barcelona.cat/actividades/Actividad/$(ID)
@@ -28,6 +29,7 @@ mappings:
       - [att:aforo, $(Aforo), xsd:integer]
       - [att:inscripcion, $(Inscripcion), xsd:string]
       - [att:anuncio, $(Anuncio), xsd:string]
+      - [att:tipo, $(Tipo), xsd:string]
       - [rel:typeOf, http://data.barcelona.cat/actividades/Categoria/$(Etiquetas)]
       - [rel:isHosted, http://data.barcelona.cat/url/Organizador/$(Organizadores_normalizado)]
       - [rel:placed, http://data.barcelona.cat/url/Municipio/$(Nombre_municipio_normalizado)]
