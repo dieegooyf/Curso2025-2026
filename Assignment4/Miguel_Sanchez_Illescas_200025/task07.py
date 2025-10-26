@@ -69,15 +69,8 @@ PREFIX ns: <http://oeg.fi.upm.es/def/people#>
 SELECT DISTINCT ?c ?sc WHERE {
     {
         ?c a rdfs:Class .
-    } UNION {
-        ?c rdfs:subClassOf ?superclass .
-    } UNION {
-        ?superclass rdfs:subClassOf ?c .
-    } UNION {
-        ?individual a ?c .
-        FILTER(STRSTARTS(STR(?c), "http://oeg.fi.upm.es/def/people#"))
+        OPTIONAL { ?c rdfs:subClassOf ?sc . }
     }
-    OPTIONAL { ?c rdfs:subClassOf ?sc }
 }
 """
 
@@ -141,10 +134,7 @@ query = """
 PREFIX ns: <http://oeg.fi.upm.es/def/people#>
 SELECT ?name ?type WHERE {
     ?person ns:knows ns:Rocky .
-    ?person a ?type .
-    OPTIONAL { ?person rdfs:label ?name }
-    OPTIONAL { ?person ns:hasName ?hasName }
-    BIND(COALESCE(?name, ?hasName) AS ?name)
+    ?person rdfs:label ?name .
 }
 """
 # TO DO
@@ -160,20 +150,15 @@ report.validate_07_03(g, query)
 query = """
 PREFIX ns: <http://oeg.fi.upm.es/def/people#>
 SELECT DISTINCT ?name WHERE {
-    ?person ns:hasColleague ?colleague1 .
+    ?person rdfs:label ?name .
     {
-        # Colleague has a dog
-        ?colleague1 ns:ownsPet ?pet .
-        ?pet a ns:Animal .
+        ?person ns:hasColleague ?colleague .
+        ?colleague ns:ownsPet ?pet .
     } UNION {
-        # Colleague has a colleague who has a dog
+        ?person ns:hasColleague ?colleague1 .
         ?colleague1 ns:hasColleague ?colleague2 .
         ?colleague2 ns:ownsPet ?pet .
-        ?pet a ns:Animal .
     }
-    OPTIONAL { ?person rdfs:label ?label }
-    OPTIONAL { ?person ns:hasName ?hasName }
-    BIND(COALESCE(?label, ?hasName) AS ?name)
 }
 """
 
