@@ -2,29 +2,32 @@ PREFIX schema: <http://schema.org/>
 PREFIX wgs:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
 
-# A. Número de estaciones modeladas como schema:Place
-SELECT (COUNT(DISTINCT ?s) AS ?n) WHERE { ?s a schema:Place . }
+# A_sameAs: Número de estaciones con admin enlazado vía owl:sameAs (debe salir 24)
+SELECT (COUNT(DISTINCT ?s) AS ?n) WHERE {
+  ?s a schema:Place ;
+     schema:containedInPlace ?adminWD .
+  ?adminLocal owl:sameAs ?adminWD .
+}
 
-# B. Cada estación debe tener 3 enlaces administrativos (municipio, provincia, CCAA)
-SELECT ?s (COUNT(?c) AS ?nLinks) WHERE {
-  ?s a schema:Place ; schema:containedInPlace ?c .
+# B_sameAs_ok: Cada estación con exactamente 3 enlaces administrativos (vía sameAs) — devuelve 24 filas
+SELECT ?s (COUNT(?adminLocal) AS ?nLinks) WHERE {
+  ?s a schema:Place ;
+     schema:containedInPlace ?adminWD .
+  ?adminLocal owl:sameAs ?adminWD .
 }
 GROUP BY ?s
-HAVING (?nLinks < 3)
+HAVING (?nLinks = 3)
 
-# C. Comprobar que los enlaces son de Wikidata (formato IRI)
-SELECT (COUNT(?c) AS ?total) WHERE {
-  ?s a schema:Place ; schema:containedInPlace ?c .
-  FILTER( STRSTARTS(STR(?c),"http://www.wikidata.org/entity/") ||
-          STRSTARTS(STR(?c),"https://www.wikidata.org/entity/") )
+# C_sameAs_totalLinks: Total de enlaces administrativos validados con sameAs — debería ser 72
+SELECT (COUNT(?adminWD) AS ?total) WHERE {
+  ?s a schema:Place ;
+     schema:containedInPlace ?adminWD .
+  ?adminLocal owl:sameAs ?adminWD .
 }
 
 # Q4: Listar estaciones con su admin local via owl:sameAs (resultado no vacío)
-PREFIX schema: <http://schema.org/>
-PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX owl:    <http://www.w3.org/2002/07/owl#>
-
 SELECT ?station ?name ?adminLocal ?adminLabel WHERE {
   ?station a schema:Place ;
            schema:name ?name ;
@@ -36,11 +39,6 @@ SELECT ?station ?name ?adminLocal ?adminLabel WHERE {
 LIMIT 50
 
 # Q5: Datos para la app (nombre, coords, admin local) usando owl:sameAs
-PREFIX schema: <http://schema.org/>
-PREFIX wgs:    <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX owl:    <http://www.w3.org/2002/07/owl#>
-
 SELECT ?station ?name ?lat ?long ?adminLabel WHERE {
   ?station a schema:Place ;
            schema:name ?name ;
