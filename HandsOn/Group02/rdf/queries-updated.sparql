@@ -21,7 +21,7 @@ ORDER BY ?fechaInicio
 
 SELECT ?tipo (COUNT(*) as ?cantidad)
 WHERE {
-  ?actividad a abse:Actividad ;
+  ?actividad a base:Actividad ;
             att:tipo ?tipo .
 }
 GROUP BY ?tipo
@@ -47,7 +47,7 @@ SELECT ?municipio ?organizador ?categoria
 WHERE {
   ?actividad a base:Actividad ;
              att:titulo ?titulo ;
-             att:Aforo ?aforo ;
+             att:aforo ?aforo ;
              rel:isHosted ?organizador ;
              rel:typeOf ?categoria ;
              rel:placed ?municipio .
@@ -88,3 +88,8 @@ WHERE {
 }
 ORDER BY ?municipio
 LIMIT 20
+
+SELECT ?organizador ?uriwd
+WHERE {
+
+}

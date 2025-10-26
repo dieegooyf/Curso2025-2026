@@ -30,9 +30,18 @@ mappings:
       - [att:inscripcion, $(Inscripcion), xsd:string]
       - [att:anuncio, $(Anuncio), xsd:string]
       - [att:tipo, $(Tipo), xsd:string]
-      - [rel:typeOf, http://data.barcelona.cat/actividades/Categoria/$(Etiquetas)]
-      - [rel:isHosted, http://data.barcelona.cat/url/Organizador/$(Organizadores_normalizado)]
-      - [rel:placed, http://data.barcelona.cat/url/Municipio/$(Nombre_municipio_normalizado)]
+      - p: rel:typeOf
+        o:
+          - value: http://data.barcelona.cat/actividades/Categoria/$(Etiquetas)
+            type: iri
+      - p: rel:isHosted
+        o:
+          - value: http://data.barcelona.cat/url/Organizador/$(Organizadores_normalizado)
+            type: iri
+      - p: rel:placed
+        o:
+          - value: http://data.barcelona.cat/url/Municipio/$(Nombre_municipio_normalizado)
+            type: iri
       
 
   categoria:
@@ -49,7 +58,10 @@ mappings:
     s: http://data.barcelona.cat/url/Organizador/$(Organizadores_normalizado)
     po:
       - [a, url:Organizador]
-      - [owl:sameAs, $(URL_Organizadores)]
+      - p: owl:sameAs
+        o:
+          - value: $(URL_Organizadores)
+            type: iri
 
 
       
@@ -59,8 +71,14 @@ mappings:
     s: http://data.barcelona.cat/url/Municipio/$(Nombre_municipio_normalizado)
     po:
       - [a, url:Municipio]
-      - [rel:isContained, http://data.barcelona.cat/url/Comarca/$(Comarca_normalizada)]
-      - [owl:sameAs, $(URL_Municipio)]
+      - p: rel:isContained
+        o:
+          - value: http://data.barcelona.cat/url/Comarca/$(Comarca_normalizada)
+            type: iri
+      - p: owl:sameAs
+        o:
+          - value: $(URL_Municipio)
+            type: iri
       
   comarca:
     sources: 
@@ -68,4 +86,7 @@ mappings:
     s: http://data.barcelona.cat/url/Comarca/$(Comarca_normalizada)
     po:
       - [a, url:Comarca]
-      - [owl:sameAs, $(URL_Comarca)]
+      - p: owl:sameAs
+        o:
+          - value: $(URL_Comarca)
+            type: iri
