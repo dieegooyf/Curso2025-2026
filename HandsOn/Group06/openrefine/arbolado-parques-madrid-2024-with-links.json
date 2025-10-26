@@ -644,5 +644,31 @@
     },
     "shareNewTopics": false,
     "description": "Match item Quercus faginea (Q2432250) for cells containing \"Quercus faginea\" in column species"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "parkName",
+    "expression": "grel:\"https://wikidata.org/entitiy/\"+cell.recon.match.id",
+    "onError": "set-to-blank",
+    "newColumnName": "same_as_wikidata_parkName",
+    "columnInsertIndex": 1,
+    "description": "Create column same_as_wikidata_parkName at index 1 based on column parkName using expression grel:\"https://wikidata.org/entitiy/\"+cell.recon.match.id"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "species",
+    "expression": "grel:\"https://wikidata.org/entitiy/\"+cell.recon.match.id",
+    "onError": "set-to-blank",
+    "newColumnName": "same_as_wikidata_species",
+    "columnInsertIndex": 3,
+    "description": "Create column same_as_wikidata_species at index 3 based on column species using expression grel:\"https://wikidata.org/entitiy/\"+cell.recon.match.id"
   }
 ]
