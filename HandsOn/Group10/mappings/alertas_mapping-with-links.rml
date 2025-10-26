@@ -14,7 +14,7 @@
   a rr:TriplesMap ;
   rml:logicalSource [
     rml:source "csv/CALIDAD-AIRE-HORARIOS20250813-with-links.csv" ;
-    rml:referenceFormulation ql:CSV
+    rml:referenceFormulation ql:CSV ;
     rml:delimiter ";"
   ] ;
 
@@ -74,7 +74,7 @@
   rr:predicateObjectMap [ rr:predicate vocab:municipio ; rr:objectMap [ rml:reference "MUNICIPIO" ] ] ;
   rr:predicateObjectMap [ rr:predicate vocab:estacion ; rr:objectMap [ rml:reference "ESTACION" ] ] ;
   rr:predicateObjectMap [ rr:predicate vocab:variable ; rr:objectMap [ rml:reference "MAGNITUD" ] ] ;
-  rr:predicateObjectMap [ rr:predicate owl:sameAs ; rr:objectMap [ rml:reference "MAGNITUD_URI" ; rr:termType rr:IRI ] ] ;
+  rr:predicateObjectMap [ rr:predicate owl:sameAs ; rr:objectMap [ rml:reference "MAGNITUD URI" ; rr:termType rr:IRI ] ] ;
   rr:predicateObjectMap [ rr:predicate vocab:fecha ; rr:objectMap [ rml:reference "Fecha" ; rr:datatype xsd:dateTime ] ] ;
   rr:predicateObjectMap [ rr:predicate vocab:H01 ; rr:objectMap [ rml:reference "H01" ; rr:datatype xsd:float ] ] ;
   rr:predicateObjectMap [ rr:predicate vocab:H02 ; rr:objectMap [ rml:reference "H02" ; rr:datatype xsd:float ] ] ;
